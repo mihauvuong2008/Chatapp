@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>chatapp</title>
+  <link rel="shortcut icon" href="#">
+  <link href="./stylesheets/chatapp.css" rel="stylesheet" type="text/css">
+  <script src="./javascripts/chatappAction/chatapp.js"></script>
+  <script src="./javascripts/chatappAction/chatBox.js"></script>
+  <script src="./javascripts/chatappAction/chatUpdater.js"></script>
+  <script src="./javascripts/chatappAction/serverComunicate.js"></script>
+  <script src="./javascripts/chatappAction/chatMouselistener.js"></script>
+</head>
+
+<body id="bodyID">
+  <div class="chatpanel">
+
+    <div  id="pupleboxID" class="puplebox">
+      <div class="boxheader">
+        <div id="pupleID" class="puple"></div>
+        <div id="toolbarID" class="toolbar">
+          <div class="user_name">your username</div>
+          <div id="logout_buttonID" class="toolbarbutton logout_button">logout</div>
+          <div id="login_buttonID" class="toolbarbutton login_button">login</div>
+          <div id="addfriendID" class="toolbarbutton addfriend">add friend</div>
+          <div id="newgroupID" class="toolbarbutton newgroup" >new group</div>
+          <div id="openstoryID" class="toolbarbutton openstory" >open story</div>
+          <!-- <div class="toolbarbutton yourface">your face</div>
+          <div class="toolbarbutton unhideyourmind" onclick="">unhide yourmind</div> -->
+        </div>
+      </div>
+      <div class="accountnotify">
+        <div class="acountnotifyitem">
+          <div class="user">
+            <div class="usericon">
+            </div>
+            <div class="username"> username
+            </div>
+          </div>
+          <div class="actionmessage"> send addfriend request
+          </div>
+          <div class="respone">accept</div>
+          <div class="respone">discare</div>
+        </div>
+        <div class="acountnotifyitem">
+          <div class="user">
+            <div class="usericon">
+            </div>
+            <div class="username">username
+            </div>
+          </div>
+          <div class="actionmessage"> send addfriend request
+          </div>
+          <div class="respone">accept</div>
+          <div class="respone">discare</div>
+        </div>
+      </div>
+      <div class="hideaddfriendbox" id="addfriendboxID">
+        <div class="addfriendboxquery" id="addfriendboxqueryID">
+          <textarea class="newfriendtext textbox" id="newfriendtextID" value=""></textarea>
+          <div id="searchbuttonID" class="searchbutton">Search</div>
+        </div>
+
+        <div class="addfriendsearchresult" id="addfriendsearchresultID">
+          <!-- <div class="addfriendqueryresult" id="addfriendqueryresultID">
+          <div class="friendinfo">
+          <div id="friendavatarID" class="friendavatar">
+        </div>
+        <div id="friendnameID" class="friendname">Content for "friendname" Here</div>
+        <div id="addfriendbuttonID" class="addfriendbutton" >+ add friend</div>
+      </div>
+
+      <div class="descript">
+      <div class="userdescript">Content for  class "userdescript" Goes Here</div>
+      <div class="userdescript">Content for  class "userdescript" Goes Here</div>
+    </div>
+  </div> -->
+</div>
+</div>
+<div id="creategroupboxID" class="hidecreategroupbox">
+  <div class="newgroupinfo">
+    <textarea id="newgrouptext"></textarea>
+    <div class="createbutton">Create</div>
+  </div>
+  <div id="creategroup_friendlistID" class="creategroup_friendlist">
+    <!-- <div class="creategroup_friendlist_item">
+    <div class="friendlist_item_name">friend 1</div>
+    <input class="friendlist_item_checker" type="checkbox">
+  </div>
+  <div class="creategroup_friendlist_item">
+  <div class="friendlist_item_name">friend 1</div>
+  <input class="friendlist_item_checker" type="checkbox">
+</div>
+<div class="creategroup_friendlist_item">
+<div class="friendlist_item_name">friend 1</div>
+<input class="friendlist_item_checker" type="checkbox">
+</div>
+<div class="creategroup_friendlist_item">
+<div class="friendlist_item_name">friend 1</div>
+<input class="friendlist_item_checker" type="checkbox">
+</div>
+<div class="creategroup_friendlist_item">
+<div class="friendlist_item_name">friend 1</div>
+<input class="friendlist_item_checker" type="checkbox">
+</div>
+<div class="creategroup_friendlist_item">
+<div class="friendlist_item_name">friend 1</div>
+<input class="friendlist_item_checker" type="checkbox">
+</div> -->
+</div>
+</div>
+</div>
+<div id="friendlistID" class="friendlist">
+  <div class="frienditem">
+    <div class="onlinestatus">
+    </div>
+    <div class="icon">
+    </div>
+    <div class="username"> username
+    </div>
+  </div>
+
+</div>
+<!-- for story component -->
+
+<div id="yourgroupID" class="yourgroup">
+  <div class="groupitem">
+    <div class="onlinestatus">
+    </div>
+    <div class="groupicon">
+      <div class="groupicon"></div>
+      <div class="groupicon"></div>
+      <div class="groupicon"></div>
+    </div>
+
+    <div class="groupitemname">
+      <div class="groupname">Content for  class "groupname" Goes Here</div>
+    </div>
+  </div>
+</div>
+
+<div id="chatboxbeanID" class="chatboxbean">
+
+</div>
+
+</div>
+
+</body>
+<script>
+
+
+async function init(){
+  const userid = "{{ userid }}";
+  USERDATA.ID = userid;
+  Object.freeze(USERDATA); //set Enum
+  TOKEN = await getChatTOKEN();
+  Object.freeze(TOKEN); //set Enum
+  inituserData();
+  initPuplebox();
+}
+
+document.body.onmousedown = setLeftButtonState_onmousedown;
+document.body.onmousemove = setLeftButtonState_onmousemove;
+document.body.onmouseup = setLeftButtonState_onmouseup;
+
+window.onload = (event) => {
+  init();
+};
+
+</script>
+
+</html>
